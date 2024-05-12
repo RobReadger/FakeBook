@@ -1,9 +1,36 @@
 .container {
-  display: flex;
   width: 50vw;
   margin: 3rem auto 0 auto;
   padding: 1rem;
   background-color: white;
   min-height: 80vh;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.head-data {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  .user-data {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    column-gap: 2rem;
+
+    &__email {
+      color: gray;
+    }
+  }
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+  }
+}
+
+.profile__posts {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
 }

@@ -10,11 +10,7 @@
     <textarea matInput [formControl]="contentControl" required></textarea>
   </mat-form-field>
   <div class="post__footer">
-    <div>
-      {{ post.likes }}
-      <button mat-button color="primary">Tetszik</button>
-    </div>
-    <button mat-button color="primary">Hozzászól</button>
+    <button mat-button color="primary" (click)="comment()">Hozzászól</button>
     <button
       mat-button
       color="warn"
@@ -26,5 +22,46 @@
     <button mat-button color="primary" *ngIf="isAuthor()" (click)="edit()">
       Szerkesztés
     </button>
+  </div>
+  <div class="comments">
+    <mat-form-field *ngIf="isCommenting">
+      <textarea matInput [formControl]="commentControl" required></textarea>
+    </mat-form-field>
+    <div class="comment" *ngFor="let comment of comments">
+      <div class="comment__data">
+        <img
+          src="/assets/default-profile-pic.png"
+          alt="Pic"
+          class="profile-pic"
+        />
+        <p>{{ comment.authorName }}</p>
+        <mat-form-field *ngIf="isCommentEditing">
+          <textarea
+            matInput
+            [formControl]="commentEditControl"
+            required
+          ></textarea>
+        </mat-form-field>
+        <p *ngIf="!isCommentEditing">{{ comment.content }}</p>
+      </div>
+      <div class="comment__buttons">
+        <button
+          mat-button
+          color="primary"
+          *ngIf="isCommentAuthor(comment.authorId)"
+          (click)="editComment(comment)"
+        >
+          Szerkesztés
+        </button>
+        <button
+          mat-button
+          color="warn"
+          *ngIf="isCommentAuthor(comment.authorId)"
+          (click)="deleteComment(comment.id)"
+        >
+          Törlés
+        </button>
+      </div>
+    </div>
   </div>
 </div>

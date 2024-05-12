@@ -4,3 +4,17 @@
   width: 35vw;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+
+.comment {
+  display: flex;
+  justify-content: space-between;
+  background-color: #ccffff;
+  padding: 0.5rem;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  &__data {
+    display: flex;
+    column-gap: 2rem;
+  }
+}

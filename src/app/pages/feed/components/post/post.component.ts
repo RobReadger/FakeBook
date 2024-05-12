@@ -9,6 +9,9 @@ import {
 import { Post } from '../../../../models/Post';
 import { UserService } from '../../../../services/user.service';
 import { FormControl } from '@angular/forms';
+import { CommentService } from '../../../../services/comment.service';
+import { Comment } from '../../../../models/Comment';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-post',
@@ -23,12 +26,26 @@ export class PostComponent implements AfterViewInit {
   contentControl = new FormControl();
   username?: string;
 
-  constructor(private userService: UserService) {}
+  isCommenting = false;
+  commentControl = new FormControl();
+
+  isCommentEditing = false;
+  commentEditControl = new FormControl();
+
+  comments: Comment[] = [];
+
+  constructor(
+    private userService: UserService,
+    private commentService: CommentService
+  ) {}
 
   ngAfterViewInit(): void {
-    this.userService
-      .getById(this.post.authorId)
-      .subscribe((user) => (this.username = user.data()?.name));
+    this.getNameById(this.post.authorId).subscribe(
+      (name) => (this.username = name)
+    );
+    this.commentService
+      .getCommentsForPost(this.post.id)
+      .subscribe((comments) => (this.comments = comments));
   }
 
   isAuthor() {
@@ -45,5 +62,47 @@ export class PostComponent implements AfterViewInit {
     this.isEditing = false;
     this.post.content = this.contentControl.value;
     this.editEvent.emit(this.post);
+  }
+
+  getNameById(userId: string) {
+    return this.userService
+      .getById(userId)
+      .pipe(map((user) => user.data()?.name));
+  }
+
+  comment() {
+    if (!this.isCommenting) {
+      this.isCommenting = true;
+      return;
+    }
+
+    this.isCommenting = false;
+    const comment = {
+      authorName: this.userService.getCurrentUser()?.name,
+      authorId: this.userService.getCurrentUser()?.uid!,
+      postId: this.post.id,
+      content: this.commentControl.value,
+    } as Comment;
+    this.commentService.create(comment);
+  }
+
+  isCommentAuthor(userId: string) {
+    return this.userService.getCurrentUser()?.uid === userId;
+  }
+
+  deleteComment(id: string) {
+    this.commentService.delete(id);
+  }
+
+  editComment(comment: Comment) {
+    if (!this.isCommentEditing) {
+      this.isCommentEditing = true;
+      this.commentEditControl.setValue(comment.content);
+      return;
+    }
+
+    this.isCommentEditing = false;
+    comment.content = this.commentEditControl.value;
+    this.commentService.update(comment);
   }
 }

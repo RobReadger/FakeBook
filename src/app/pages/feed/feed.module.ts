@@ -21,5 +21,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     HeaderModule,
     ReactiveFormsModule,
   ],
+  exports: [PostsComponent],
 })
 export class FeedModule {}
