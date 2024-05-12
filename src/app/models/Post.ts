@@ -1,9 +1,7 @@
-import { User } from './User';
-import { Comment } from './Comment';
-
 export interface Post {
-  author: User;
+  id: string;
+  authorId: string;
   content: string;
   likes: number;
-  comments: Comment[];
+  postDate: string;
 }

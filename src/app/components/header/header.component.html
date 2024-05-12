@@ -1,10 +1,15 @@
 <header>
-  <h1>FakeBook</h1>
-  <a routerLink="/profile">
-    <img
-      class="profile-pic"
-      src="/assets/default-profile-pic.png"
-      alt="Default profile pic"
-    />
+  <a routerLink="/feed">
+    <h1>FakeBook</h1>
   </a>
+  <div>
+    <h2 (click)="logout()">Kilépés</h2>
+    <a routerLink="/profile">
+      <img
+        class="profile-pic"
+        src="/assets/default-profile-pic.png"
+        alt="Default profile pic"
+      />
+    </a>
+  </div>
 </header>

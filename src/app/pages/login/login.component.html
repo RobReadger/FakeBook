@@ -1,13 +1,25 @@
-<div>
+<div class="title-container">
+  <h1 class="title">FakeBook</h1>
+</div>
+<div class="login-container">
   <h1>Bejelentkezés</h1>
-  <mat-form-field>
-    <mat-label>Email</mat-label>
-    <input type="email" matInput />
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Jelszó</mat-label>
-    <input type="password" matInput />
-  </mat-form-field>
-  <button mat-flat-button color="primary" (click)="login()">Belép</button>
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input type="email" matInput formControlName="email" required />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Jelszó</mat-label>
+      <input type="password" matInput formControlName="password" required />
+    </mat-form-field>
+    <button
+      mat-flat-button
+      color="primary"
+      type="submit"
+      [disabled]="loginForm.invalid"
+    >
+      Belép
+    </button>
+  </form>
   <a routerLink="/register">Nincs fiókja? Regisztráljon</a>
 </div>

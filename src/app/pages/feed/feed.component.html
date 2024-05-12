@@ -1,12 +1,20 @@
+<app-header></app-header>
 <div class="add-post">
-  <form>
+  <div>
     <h1>Bejegyzés létrehozása</h1>
     <mat-form-field class="add-post__textarea">
       <mat-label>Bejegyzés írása</mat-label>
-      <textarea matInput></textarea>
+      <textarea matInput [formControl]="postArea" required></textarea>
     </mat-form-field>
-    <button mat-button color="primary">Megosztás</button>
-  </form>
+    <button
+      mat-button
+      color="primary"
+      [disabled]="postArea.invalid"
+      (click)="createPost()"
+    >
+      Megosztás
+    </button>
+  </div>
 </div>
 <div class="posts">
   <app-posts></app-posts>

@@ -1,14 +1,30 @@
 <div class="post">
   <div class="post__header">
     <img src="/assets/default-profile-pic.png" alt="Pic" class="profile-pic" />
-    <p>{{ post.author?.name }}</p>
+    <p>
+      {{ username }}<span>&nbsp;{{ post.postDate }}</span>
+    </p>
   </div>
-  <p>{{ post.content }}</p>
-  <div>
+  <p *ngIf="!isEditing">{{ post.content }}</p>
+  <mat-form-field *ngIf="isEditing">
+    <textarea matInput [formControl]="contentControl" required></textarea>
+  </mat-form-field>
+  <div class="post__footer">
     <div>
       {{ post.likes }}
-      <button mat-button color="primary">Like</button>
+      <button mat-button color="primary">Tetszik</button>
     </div>
-    <button mat-button color="primary">Comment</button>
+    <button mat-button color="primary">Hozzászól</button>
+    <button
+      mat-button
+      color="warn"
+      *ngIf="isAuthor()"
+      (click)="deleteEvent.emit(post.id)"
+    >
+      Törlés
+    </button>
+    <button mat-button color="primary" *ngIf="isAuthor()" (click)="edit()">
+      Szerkesztés
+    </button>
   </div>
 </div>

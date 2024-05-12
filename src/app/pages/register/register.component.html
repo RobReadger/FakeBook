@@ -1,33 +1,38 @@
-<form [formGroup]="registrationForm" (ngSubmit)="register()">
-  <h1>Regisztráció</h1>
-  <mat-form-field>
-    <mat-label>Név</mat-label>
-    <input type="text" matInput formControlName="name" required />
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Email</mat-label>
-    <input type="email" matInput formControlName="email" required />
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Jelszó</mat-label>
-    <input type="password" matInput formControlName="password" required />
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Jelszó ismét</mat-label>
-    <input
-      type="password"
-      matInput
-      formControlName="confirmPassword"
-      required
-    />
-  </mat-form-field>
-  <button
-    mat-flat-button
-    color="primary"
-    type="submit"
-    [disabled]="registrationForm.invalid"
-  >
-    Regisztráció
-  </button>
-  <button mat-flat-button color="primary" (click)="back()">Vissza</button>
-</form>
+<div class="title-container">
+  <h1 class="title">FakeBook</h1>
+</div>
+<div class="register-container">
+  <form [formGroup]="registrationForm" (ngSubmit)="register()">
+    <h1>Regisztráció</h1>
+    <mat-form-field>
+      <mat-label>Név</mat-label>
+      <input type="text" matInput formControlName="name" required />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input type="email" matInput formControlName="email" required />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Jelszó</mat-label>
+      <input type="password" matInput formControlName="password" required />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Jelszó ismét</mat-label>
+      <input
+        type="password"
+        matInput
+        formControlName="confirmPassword"
+        required
+      />
+    </mat-form-field>
+    <button
+      mat-flat-button
+      color="primary"
+      type="submit"
+      [disabled]="registrationForm.invalid"
+    >
+      Regisztráció
+    </button>
+    <button mat-flat-button color="primary" (click)="back()">Vissza</button>
+  </form>
+</div>

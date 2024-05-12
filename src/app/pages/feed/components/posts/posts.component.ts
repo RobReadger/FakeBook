@@ -13,12 +13,18 @@ export class PostsComponent implements OnInit {
   constructor(private postService: PostService) {}
 
   ngOnInit(): void {
-    console.log('rahn');
-
     this.fetchPosts();
   }
 
   fetchPosts() {
-    this.postService.fetchPosts().subscribe((posts) => (this.posts = posts));
+    this.postService.findAllPosts().subscribe((posts) => (this.posts = posts));
+  }
+
+  deletePost(id: string) {
+    this.postService.delete(id);
+  }
+
+  editPost(post: Post) {
+    this.postService.update(post);
   }
 }

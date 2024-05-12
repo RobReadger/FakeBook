@@ -1,6 +1,11 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { LoggedInBaseComponent } from './components/logged-in-base/logged-in-base.component';
+import { inject, NgModule } from '@angular/core';
+import {
+  ActivatedRouteSnapshot,
+  RouterModule,
+  RouterStateSnapshot,
+  Routes,
+} from '@angular/router';
+import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -15,12 +20,26 @@ const routes: Routes = [
       import('./pages/login/login.module').then((m) => m.LoginModule),
   },
   {
-    path: '**',
-    component: LoggedInBaseComponent,
+    path: 'feed',
     loadChildren: () =>
-      import('./components/logged-in-base/logged-in-base.module').then(
-        (m) => m.LoggedInBaseModule
-      ),
+      import('./pages/feed/feed.module').then((m) => m.FeedModule),
+    canActivate: [
+      (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) =>
+        inject(AuthGuardService).canActivate(),
+    ],
+  },
+  {
+    path: 'profile',
+    loadChildren: () =>
+      import('./pages/profile/profile.module').then((m) => m.ProfileModule),
+    canActivate: [
+      (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) =>
+        inject(AuthGuardService).canActivate(),
+    ],
+  },
+  {
+    path: '**',
+    redirectTo: '/login',
     pathMatch: 'full',
   },
 ];

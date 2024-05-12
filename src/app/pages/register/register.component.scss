@@ -1,0 +1,31 @@
+.register-container {
+  margin: 4rem auto 0 auto;
+  width: 20vw;
+  text-align: center;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    margin-bottom: 2rem;
+
+    button {
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+.title-container {
+  display: flex;
+  justify-content: center;
+
+  .title {
+    font-size: 76px;
+  }
+}

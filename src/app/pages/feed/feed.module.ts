@@ -7,6 +7,8 @@ import { PostComponent } from './components/post/post.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { HeaderModule } from '../../components/header/header.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [FeedComponent, PostsComponent, PostComponent],
@@ -16,6 +18,8 @@ import { MatInputModule } from '@angular/material/input';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
+    HeaderModule,
+    ReactiveFormsModule,
   ],
 })
 export class FeedModule {}

@@ -1,3 +1,8 @@
 <ng-container *ngFor="let post of posts">
-  <app-post [post]="post"></app-post>
+  <app-post
+    [post]="post"
+    (deleteEvent)="deletePost($event)"
+    (editEvent)="editPost($event)"
+  ></app-post>
 </ng-container>
+<h1 *ngIf="posts.length === 0">Úgy tűnik még nincsenek posztok...</h1>
