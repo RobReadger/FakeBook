@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "fakebook-social-platform": {
+      "hosting": {
+        "fakebook": [
+          "fakebook-social-platform"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "fakebook-social-platform"
+  }
+}

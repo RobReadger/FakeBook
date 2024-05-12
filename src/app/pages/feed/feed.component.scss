@@ -1,0 +1,23 @@
+.posts {
+  display: flex;
+  justify-content: center;
+}
+
+.add-post {
+  width: 50vw;
+  padding: 1rem;
+  // display: flex;
+  // justify-content: center;
+  margin: 2rem auto 2rem auto;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: white;
+
+  &__textarea {
+    width: 100%;
+    height: 10rem;
+
+    textarea {
+      height: 6rem;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+<div class="post">
+  <div class="post__header">
+    <img src="/assets/default-profile-pic.png" alt="Pic" class="profile-pic" />
+    <p>{{ post.author?.name }}</p>
+  </div>
+  <p>{{ post.content }}</p>
+  <div>
+    <div>
+      {{ post.likes }}
+      <button mat-button color="primary">Like</button>
+    </div>
+    <button mat-button color="primary">Comment</button>
+  </div>
+</div>
